@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9fbf0d0-9f28-41e7-af38-6ee341596026" name="Default Changelist" comment="" />
+    <list default="true" id="a9fbf0d0-9f28-41e7-af38-6ee341596026" name="Default Changelist" comment="项目整体架构">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +27,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1YshDvP9LeEA75C5IylXhodxgYm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -77,18 +83,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583737093435</updated>
-      <workItem from="1583737098501" duration="2887000" />
+      <workItem from="1583737098501" duration="3200000" />
     </task>
+    <task id="LOCAL-00001" summary="项目整体架构">
+      <created>1583748836427</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583748836427</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="项目整体架构" />
+    <option name="LAST_COMMIT_MESSAGE" value="项目整体架构" />
   </component>
   <component name="WindowStateProjectService">
     <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583738596065">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583738596065" />
+    <state x="469" y="141" key="CommitChangelistDialog2" timestamp="1583748850070">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="469" y="141" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1583748850070" />
     <state width="1878" height="304" key="GridCell.Tab.0.bottom" timestamp="1583746242975">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -133,6 +155,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="448" y="121" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1583748600695" />
+    <state x="560" y="280" key="Vcs.Push.Dialog.v2" timestamp="1583748887128">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="560" y="280" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1583748887128" />
     <state x="805" y="190" width="782" height="550" key="find.popup" timestamp="1583748218546">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
