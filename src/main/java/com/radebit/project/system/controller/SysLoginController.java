@@ -42,7 +42,7 @@ public class SysLoginController
      * 
      * @param username 用户名
      * @param password 密码
-     * @param captcha 验证码
+     * @param code 验证码
      * @param uuid 唯一标识
      * @return 结果
      */
@@ -52,6 +52,23 @@ public class SysLoginController
         AjaxResult ajax = AjaxResult.success();
         // 生成令牌
         String token = loginService.login(username, password, code, uuid);
+        ajax.put(Constants.TOKEN, token);
+        return ajax;
+    }
+
+    /**
+     * 无验证码登录
+     *
+     * @param username 用户名
+     * @param password 密码
+     * @return 结果
+     */
+    @PostMapping("/loginWithoutCode")
+    public AjaxResult loginWithoutCode(String username, String password)
+    {
+        AjaxResult ajax = AjaxResult.success();
+        // 生成令牌
+        String token = loginService.login(username, password);
         ajax.put(Constants.TOKEN, token);
         return ajax;
     }

@@ -1,3 +1,7 @@
-15:35:24.743 [Thread-22] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
-15:39:43.062 [Thread-20] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
-16:02:25.641 [schedule-pool-1] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[admin][Success][登录成功]
+13:01:54.487 [schedule-pool-1] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[admin][Error][验证码错误]
+13:01:58.759 [schedule-pool-1] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[admin][Success][登录成功]
+13:26:41.058 [Thread-24] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+13:27:21.641 [Thread-19] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+13:27:40.839 [schedule-pool-1] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[admin][Success][登录成功]
+13:30:11.408 [schedule-pool-1] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[admin][Error][用户不存在/密码错误]
+13:30:20.662 [schedule-pool-2] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[admin][Success][登录成功]
