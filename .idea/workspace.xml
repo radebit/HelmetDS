@@ -2,21 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9fbf0d0-9f28-41e7-af38-6ee341596026" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radebit/project/helmetds/controller/HUserInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radebit/project/helmetds/domain/HUserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radebit/project/helmetds/domain/vo/HUserInfoVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radebit/project/helmetds/mapper/HUserInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radebit/project/helmetds/service/IHUserInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/radebit/project/helmetds/service/impl/HUserInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/helmetds/HUserInfoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/HelmetDS/sys-info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/HelmetDS/sys-info.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/HelmetDS/sys-user.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/HelmetDS/sys-user.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radebit/framework/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radebit/framework/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radebit/framework/security/service/SysLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radebit/framework/security/service/SysLoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/radebit/project/system/controller/SysLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/radebit/project/system/controller/SysLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/radebit/framework/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/radebit/framework/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/radebit/framework/security/service/SysLoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/radebit/framework/security/service/SysLoginService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/radebit/project/system/controller/SysLoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/radebit/project/system/controller/SysLoginController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,11 +60,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/mybatis" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/mybatis" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/radebit/project" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="HelmetDSApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -92,7 +105,9 @@
       <option name="presentableId" value="Default" />
       <updated>1583737093435</updated>
       <workItem from="1583737098501" duration="3930000" />
-      <workItem from="1583984507323" duration="881000" />
+      <workItem from="1583984507323" duration="1159000" />
+      <workItem from="1584266651080" duration="1776000" />
+      <workItem from="1584276102944" duration="136000" />
     </task>
     <task id="LOCAL-00001" summary="项目整体架构">
       <created>1583748836427</created>
@@ -108,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583748956338</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="新增无验证码登录">
+      <created>1583991121808</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1583991121808</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,57 +139,62 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="项目整体架构" />
     <MESSAGE value="添加README" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加README" />
+    <MESSAGE value="新增无验证码登录" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增无验证码登录" />
   </component>
   <component name="WindowStateProjectService">
     <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583738596065">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1583738596065" />
-    <state x="469" y="141" key="CommitChangelistDialog2" timestamp="1583748956118">
+    <state x="773" y="231" key="#com.intellij.ide.util.MemberChooser" timestamp="1584275812698">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="469" y="141" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1583748956118" />
-    <state width="1878" height="304" key="GridCell.Tab.0.bottom" timestamp="1583990844118">
-      <screen x="50" y="23" width="1870" height="1057" />
+    <state x="773" y="231" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1584275812698" />
+    <state x="469" y="141" key="CommitChangelistDialog2" timestamp="1583991121487">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="304" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583989348525" />
-    <state width="1878" height="304" key="GridCell.Tab.0.bottom/50.23.1870.1057@50.23.1870.1057" timestamp="1583990844118" />
-    <state width="1878" height="304" key="GridCell.Tab.0.center" timestamp="1583990844116">
-      <screen x="50" y="23" width="1870" height="1057" />
+    <state x="469" y="141" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1583991121487" />
+    <state width="1878" height="304" key="GridCell.Tab.0.bottom" timestamp="1584276241971">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="304" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583989348524" />
-    <state width="1878" height="304" key="GridCell.Tab.0.center/50.23.1870.1057@50.23.1870.1057" timestamp="1583990844116" />
-    <state width="1878" height="304" key="GridCell.Tab.0.left" timestamp="1583990844115">
-      <screen x="50" y="23" width="1870" height="1057" />
+    <state width="1878" height="304" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584276241971" />
+    <state width="1878" height="304" key="GridCell.Tab.0.bottom/50.23.1870.1057@50.23.1870.1057" timestamp="1584274590374" />
+    <state width="1878" height="304" key="GridCell.Tab.0.center" timestamp="1584276241969">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="304" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583989348523" />
-    <state width="1878" height="304" key="GridCell.Tab.0.left/50.23.1870.1057@50.23.1870.1057" timestamp="1583990844115" />
-    <state width="1878" height="304" key="GridCell.Tab.0.right" timestamp="1583990844117">
-      <screen x="50" y="23" width="1870" height="1057" />
+    <state width="1878" height="304" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584276241969" />
+    <state width="1878" height="304" key="GridCell.Tab.0.center/50.23.1870.1057@50.23.1870.1057" timestamp="1584274590373" />
+    <state width="1878" height="304" key="GridCell.Tab.0.left" timestamp="1584276241969">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="304" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583989348525" />
-    <state width="1878" height="304" key="GridCell.Tab.0.right/50.23.1870.1057@50.23.1870.1057" timestamp="1583990844117" />
-    <state width="1878" height="304" key="GridCell.Tab.1.bottom" timestamp="1583990844121">
-      <screen x="50" y="23" width="1870" height="1057" />
+    <state width="1878" height="304" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584276241969" />
+    <state width="1878" height="304" key="GridCell.Tab.0.left/50.23.1870.1057@50.23.1870.1057" timestamp="1584274590373" />
+    <state width="1878" height="304" key="GridCell.Tab.0.right" timestamp="1584276241970">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="304" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583989348528" />
-    <state width="1878" height="304" key="GridCell.Tab.1.bottom/50.23.1870.1057@50.23.1870.1057" timestamp="1583990844121" />
-    <state width="1878" height="304" key="GridCell.Tab.1.center" timestamp="1583990844119">
-      <screen x="50" y="23" width="1870" height="1057" />
+    <state width="1878" height="304" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584276241970" />
+    <state width="1878" height="304" key="GridCell.Tab.0.right/50.23.1870.1057@50.23.1870.1057" timestamp="1584274590374" />
+    <state width="1878" height="304" key="GridCell.Tab.1.bottom" timestamp="1584276241973">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="304" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583989348526" />
-    <state width="1878" height="304" key="GridCell.Tab.1.center/50.23.1870.1057@50.23.1870.1057" timestamp="1583990844119" />
-    <state width="1878" height="304" key="GridCell.Tab.1.left" timestamp="1583990844118">
-      <screen x="50" y="23" width="1870" height="1057" />
+    <state width="1878" height="304" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584276241973" />
+    <state width="1878" height="304" key="GridCell.Tab.1.bottom/50.23.1870.1057@50.23.1870.1057" timestamp="1584274590377" />
+    <state width="1878" height="304" key="GridCell.Tab.1.center" timestamp="1584276241972">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="304" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583989348526" />
-    <state width="1878" height="304" key="GridCell.Tab.1.left/50.23.1870.1057@50.23.1870.1057" timestamp="1583990844118" />
-    <state width="1878" height="304" key="GridCell.Tab.1.right" timestamp="1583990844120">
-      <screen x="50" y="23" width="1870" height="1057" />
+    <state width="1878" height="304" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584276241972" />
+    <state width="1878" height="304" key="GridCell.Tab.1.center/50.23.1870.1057@50.23.1870.1057" timestamp="1584274590376" />
+    <state width="1878" height="304" key="GridCell.Tab.1.left" timestamp="1584276241972">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="304" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583989348527" />
-    <state width="1878" height="304" key="GridCell.Tab.1.right/50.23.1870.1057@50.23.1870.1057" timestamp="1583990844120" />
+    <state width="1878" height="304" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584276241972" />
+    <state width="1878" height="304" key="GridCell.Tab.1.left/50.23.1870.1057@50.23.1870.1057" timestamp="1584274590375" />
+    <state width="1878" height="304" key="GridCell.Tab.1.right" timestamp="1584276241973">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="304" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584276241973" />
+    <state width="1878" height="304" key="GridCell.Tab.1.right/50.23.1870.1057@50.23.1870.1057" timestamp="1584274590376" />
     <state x="448" y="121" key="SettingsEditor" timestamp="1583748600695">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
