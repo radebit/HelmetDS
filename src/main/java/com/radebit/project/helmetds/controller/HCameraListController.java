@@ -1,6 +1,12 @@
 package com.radebit.project.helmetds.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import cn.hutool.core.lang.Assert;
+import com.radebit.common.utils.SecurityUtils;
+import com.radebit.project.helmetds.domain.vo.HCameraListVO;
+import com.radebit.project.helmetds.service.IHCameraGroupService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +39,9 @@ public class HCameraListController extends BaseController
     @Autowired
     private IHCameraListService hCameraListService;
 
+    @Autowired
+    private IHCameraGroupService hCameraGroupService;
+
     /**
      * 查询摄像头信息列表
      */
@@ -41,7 +50,10 @@ public class HCameraListController extends BaseController
     public TableDataInfo list(HCameraList hCameraList)
     {
         startPage();
-        List<HCameraList> list = hCameraListService.selectHCameraListList(hCameraList);
+        List<HCameraListVO> list = new ArrayList<>();
+        for (HCameraList hCameraListTemp: hCameraListService.selectHCameraListList(hCameraList)){
+            list.add(hCameraListService.PoToVo(hCameraListTemp));
+        }
         return getDataTable(list);
     }
 
@@ -76,6 +88,13 @@ public class HCameraListController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody HCameraList hCameraList)
     {
+        //断言
+        Assert.notNull(hCameraList.getCameraName(),"摄像头名称不能为空！");
+        //判断分类是否为空
+        if (hCameraGroupService.selectHCameraGroupById(hCameraList.getGroupId())==null){
+            return AjaxResult.error("摄像头分类不存在！");
+        }
+        hCameraList.setFounder(SecurityUtils.getLoginUser().getUser().getUserId());
         return toAjax(hCameraListService.insertHCameraList(hCameraList));
     }
 
@@ -87,6 +106,12 @@ public class HCameraListController extends BaseController
     @PutMapping
     public AjaxResult edit(@RequestBody HCameraList hCameraList)
     {
+        if (hCameraList.getGroupId()!=null){
+            //判断分类是否为空
+            if (hCameraGroupService.selectHCameraGroupById(hCameraList.getGroupId())==null){
+                return AjaxResult.error("摄像头分类不存在！");
+            }
+        }
         return toAjax(hCameraListService.updateHCameraList(hCameraList));
     }
 

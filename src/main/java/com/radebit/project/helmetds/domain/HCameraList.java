@@ -16,47 +16,36 @@ public class HCameraList extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 摄像头编号 */
-    @Excel(name = "摄像头编号")
     private Long cameraId;
 
     /** 摄像头分组ID */
-    @Excel(name = "摄像头分组ID")
     private Long groupId;
 
     /** 摄像头名称 */
-    @Excel(name = "摄像头名称")
     private String cameraName;
 
     /** rtsp流地址 */
-    @Excel(name = "rtsp流地址")
     private String rtspStream;
 
     /** rtmp流地址 */
-    @Excel(name = "rtmp流地址")
     private String rtmpStream;
 
     /** 主流地址 */
-    @Excel(name = "主流地址")
     private String mainStream;
 
     /** 频段 */
-    @Excel(name = "频段")
     private String frequencyBand;
 
     /** 密钥 */
-    @Excel(name = "密钥")
     private String secretKey;
 
     /** 抓图 */
-    @Excel(name = "抓图")
     private String screenshots;
 
     /** 归属人 */
-    @Excel(name = "归属人")
     private Long founder;
 
     /** 摄像头状态(0-离线,1-在线) */
-    @Excel(name = "摄像头状态(0-离线,1-在线)")
     private String state;
 
     public void setCameraId(Long cameraId) 

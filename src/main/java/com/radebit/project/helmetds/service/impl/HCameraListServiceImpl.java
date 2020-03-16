@@ -2,6 +2,9 @@ package com.radebit.project.helmetds.service.impl;
 
 import java.util.List;
 import com.radebit.common.utils.DateUtils;
+import com.radebit.project.helmetds.domain.vo.HCameraListVO;
+import com.radebit.project.helmetds.service.IHCameraGroupService;
+import com.radebit.project.helmetds.service.IHUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.radebit.project.helmetds.mapper.HCameraListMapper;
@@ -19,6 +22,12 @@ public class HCameraListServiceImpl implements IHCameraListService
 {
     @Autowired
     private HCameraListMapper hCameraListMapper;
+
+    @Autowired
+    private IHCameraGroupService hCameraGroupService;
+
+    @Autowired
+    private IHUserInfoService hUserInfoService;
 
     /**
      * 查询摄像头信息
@@ -92,5 +101,33 @@ public class HCameraListServiceImpl implements IHCameraListService
     public int deleteHCameraListById(Long cameraId)
     {
         return hCameraListMapper.deleteHCameraListById(cameraId);
+    }
+
+    /**
+     * PoToVo
+     *
+     * @param hCameraList
+     * @return
+     */
+    @Override
+    public HCameraListVO PoToVo(HCameraList hCameraList) {
+        HCameraListVO hCameraListVO = new HCameraListVO();
+        hCameraListVO.setCameraId(hCameraList.getCameraId());
+        hCameraListVO.setGroupId(hCameraList.getGroupId());
+        hCameraListVO.setGroupName(hCameraGroupService.selectHCameraGroupById(hCameraList.getGroupId()).getGroupName());
+        hCameraListVO.setCameraName(hCameraList.getCameraName());
+        hCameraListVO.setRtspStream(hCameraList.getRtspStream());
+        hCameraListVO.setRtmpStream(hCameraList.getRtmpStream());
+        hCameraListVO.setMainStream(hCameraList.getMainStream());
+        hCameraListVO.setFrequencyBand(hCameraList.getFrequencyBand());
+        hCameraListVO.setSecretKey(hCameraList.getSecretKey());
+        hCameraListVO.setScreenshots(hCameraList.getScreenshots());
+        hCameraListVO.setFounder(hCameraList.getFounder());
+        hCameraListVO.setFounderName(hUserInfoService.selectHUserInfoById(hCameraList.getFounder()).getRealName());
+        hCameraListVO.setState(hCameraList.getState());
+        hCameraListVO.setCreateTime(hCameraList.getCreateTime());
+        hCameraListVO.setUpdateTime(hCameraList.getUpdateTime());
+        return hCameraListVO;
+
     }
 }

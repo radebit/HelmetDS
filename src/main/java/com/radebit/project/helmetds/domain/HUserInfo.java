@@ -18,47 +18,36 @@ public class HUserInfo extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 用户ID */
-    @Excel(name = "用户ID")
     private Long userId;
 
     /** 真实姓名 */
-    @Excel(name = "真实姓名")
     private String realName;
 
     /** 身份证号 */
-    @Excel(name = "身份证号")
     private String idNumber;
 
     /** 人脸照片 */
-    @Excel(name = "人脸照片")
     private String picFace;
 
     /** 安全帽照片 */
-    @Excel(name = "安全帽照片")
     private String picHelmet;
 
     /** 证件照 */
-    @Excel(name = "证件照")
     private String picZj;
 
     /** 生日 */
-    @Excel(name = "生日", width = 30, dateFormat = "yyyy-MM-dd")
     private Date birthday;
 
     /** 家庭住址 */
-    @Excel(name = "家庭住址")
     private String homeAddress;
 
     /** 入职时间 */
-    @Excel(name = "入职时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date entryTime;
 
     /** 所属用户 */
-    @Excel(name = "所属用户")
     private Long founder;
 
     /** 备注说明 */
-    @Excel(name = "备注说明")
     private String remarks;
 
     public void setUserId(Long userId) 

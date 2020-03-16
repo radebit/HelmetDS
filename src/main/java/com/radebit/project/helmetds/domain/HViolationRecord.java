@@ -16,39 +16,30 @@ public class HViolationRecord extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 违规id */
-    @Excel(name = "违规id")
     private Long violationId;
 
     /** 违规人员id */
-    @Excel(name = "违规人员id")
     private Long userId;
 
     /** 违规类型(0-未带安全帽,1-安全帽佩戴不规范,2-其他) */
-    @Excel(name = "违规类型(0-未带安全帽,1-安全帽佩戴不规范,2-其他)")
     private String violationType;
 
     /** 违规内容 */
-    @Excel(name = "违规内容")
     private String violationContent;
 
     /** 违规地点 */
-    @Excel(name = "违规地点")
     private String violationPlace;
 
     /** 违规截图 */
-    @Excel(name = "违规截图")
     private String screenshots;
 
     /** 是否处理(0-待处理,1-确认违规,2-误报违规) */
-    @Excel(name = "是否处理(0-待处理,1-确认违规,2-误报违规)")
     private String dealState;
 
     /** 抓拍设备 */
-    @Excel(name = "抓拍设备")
     private Long cameraId;
 
     /** 备注 */
-    @Excel(name = "备注")
     private String remarks;
 
     public void setViolationId(Long violationId) 

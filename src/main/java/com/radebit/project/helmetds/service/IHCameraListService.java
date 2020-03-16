@@ -2,6 +2,7 @@ package com.radebit.project.helmetds.service;
 
 import java.util.List;
 import com.radebit.project.helmetds.domain.HCameraList;
+import com.radebit.project.helmetds.domain.vo.HCameraListVO;
 
 /**
  * 摄像头信息Service接口
@@ -58,4 +59,12 @@ public interface IHCameraListService
      * @return 结果
      */
     public int deleteHCameraListById(Long cameraId);
+
+    /**
+     * PoToVo
+     *
+     * @param hCameraList
+     * @return
+     */
+    public HCameraListVO PoToVo(HCameraList hCameraList);
 }

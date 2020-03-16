@@ -16,11 +16,9 @@ public class HCameraGroup extends BaseEntity
     private static final long serialVersionUID = 1L;
 
     /** 摄像头分组ID */
-    @Excel(name = "摄像头分组ID")
     private Long groupId;
 
     /** 摄像头分组名称 */
-    @Excel(name = "摄像头分组名称")
     private String groupName;
 
     public void setGroupId(Long groupId) 
