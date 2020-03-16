@@ -85,6 +85,7 @@ public class HUserInfoServiceImpl implements IHUserInfoService
     @Override
     public int deleteHUserInfoByIds(Long[] userIds)
     {
+        sysUserService.deleteUserByIds(userIds);    //同步删除操作
         return hUserInfoMapper.deleteHUserInfoByIds(userIds);
     }
 

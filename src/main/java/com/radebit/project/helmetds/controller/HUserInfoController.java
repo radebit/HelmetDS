@@ -138,9 +138,43 @@ public class HUserInfoController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('helmetds:userInfo:edit')")
     @Log(title = "员工信息", businessType = BusinessType.UPDATE)
+    @Transactional(rollbackFor = Exception.class)
     @PutMapping
-    public AjaxResult edit(@RequestBody HUserInfo hUserInfo) {
-        return toAjax(hUserInfoService.updateHUserInfo(hUserInfo));
+    public AjaxResult edit(@RequestBody HUserInfoVO hUserInfoVO) throws SQLException {
+
+        //断言
+        Assert.notNull(hUserInfoVO.getUserId(), "用户ID不能为空");
+        //手机号查重
+        if (sysUserService.selectUserByPhonenumber(hUserInfoVO.getPhonenumber()) != null) {
+            return AjaxResult.error("手机号重复！");
+        }
+        SysUser sysUser = new SysUser();
+        sysUser.setUserId(hUserInfoVO.getUserId());
+        sysUser.setEmail(hUserInfoVO.getEmail());
+        sysUser.setPhonenumber(hUserInfoVO.getPhonenumber());
+        sysUser.setSex(hUserInfoVO.getSex());
+        sysUser.setStatus(hUserInfoVO.getStatus());
+
+        if (sysUserService.updateUser(sysUser) != 1) {
+            throw new SQLException("更新系统用户信息异常");
+        }
+
+        HUserInfo hUserInfo = new HUserInfo();
+        hUserInfo.setUserId(hUserInfoVO.getUserId());
+        hUserInfo.setRealName(hUserInfoVO.getRealName());
+        hUserInfo.setIdNumber(hUserInfoVO.getIdNumber());
+        hUserInfo.setPicFace(hUserInfoVO.getPicFace());
+        hUserInfo.setPicHelmet(hUserInfoVO.getPicHelmet());
+        hUserInfo.setPicZj(hUserInfoVO.getPicZj());
+        hUserInfo.setBirthday(hUserInfoVO.getBirthday());
+        hUserInfo.setHomeAddress(hUserInfoVO.getHomeAddress());
+        hUserInfo.setRemarks(hUserInfoVO.getRemarks());
+
+        if (hUserInfoService.updateHUserInfo(hUserInfo) != 1) {
+            throw new SQLException("更新员工数据异常");
+        }
+
+        return AjaxResult.success("更新员工信息成功！");
     }
 
     /**
