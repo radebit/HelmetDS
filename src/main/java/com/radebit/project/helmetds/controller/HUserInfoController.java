@@ -1,11 +1,17 @@
 package com.radebit.project.helmetds.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.hutool.core.lang.Assert;
+import com.radebit.common.utils.SecurityUtils;
 import com.radebit.project.helmetds.domain.vo.HUserInfoVO;
+import com.radebit.project.system.domain.SysUser;
+import com.radebit.project.system.service.ISysUserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -34,6 +40,9 @@ import com.radebit.framework.web.page.TableDataInfo;
 public class HUserInfoController extends BaseController {
     @Autowired
     private IHUserInfoService hUserInfoService;
+
+    @Autowired
+    private ISysUserService sysUserService;
 
     /**
      * 查询员工信息列表
@@ -75,9 +84,53 @@ public class HUserInfoController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('helmetds:userInfo:add')")
     @Log(title = "员工信息", businessType = BusinessType.INSERT)
+    @Transactional(rollbackFor = Exception.class)
     @PostMapping
-    public AjaxResult add(@RequestBody HUserInfo hUserInfo) {
-        return toAjax(hUserInfoService.insertHUserInfo(hUserInfo));
+    public AjaxResult add(@RequestBody HUserInfoVO hUserInfoVO) throws SQLException {
+        //断言
+        Assert.notNull(hUserInfoVO.getUserName(), "用户名不能为空");
+        Assert.notNull(hUserInfoVO.getPhonenumber(), "手机号不能为空");
+        //用户名查重
+        if (sysUserService.selectUserByUserName(hUserInfoVO.getUserName()) != null) {
+            return AjaxResult.error("用户名重复！");
+        }
+        //手机号查重
+        if (sysUserService.selectUserByPhonenumber(hUserInfoVO.getPhonenumber()) != null) {
+            return AjaxResult.error("手机号重复！");
+        }
+        SysUser sysUser = new SysUser();
+        sysUser.setDeptId(103L);
+        sysUser.setUserName(hUserInfoVO.getUserName());
+        sysUser.setNickName("匿名");
+        sysUser.setEmail(hUserInfoVO.getEmail());
+        sysUser.setPhonenumber(hUserInfoVO.getPhonenumber());
+        sysUser.setSex(hUserInfoVO.getSex() == null ? "2" : hUserInfoVO.getSex());
+        sysUser.setPassword(SecurityUtils.encryptPassword(hUserInfoVO.getPassword().equals("") ? "123456" : hUserInfoVO.getPassword()));
+        sysUser.setStatus(hUserInfoVO.getStatus() == null ? "0" : hUserInfoVO.getStatus());
+        sysUser.setRoleIds(new Long[]{4L});
+
+        if (sysUserService.insertUser(sysUser) != 1) {
+            throw new SQLException("新增系统用户异常");
+        }
+
+        HUserInfo hUserInfo = new HUserInfo();
+        hUserInfo.setUserId(sysUser.getUserId());
+        hUserInfo.setRealName(hUserInfoVO.getRealName());
+        hUserInfo.setIdNumber(hUserInfoVO.getIdNumber());
+        hUserInfo.setPicFace(hUserInfoVO.getPicFace());
+        hUserInfo.setPicHelmet(hUserInfoVO.getPicHelmet());
+        hUserInfo.setPicZj(hUserInfoVO.getPicZj());
+        hUserInfo.setBirthday(hUserInfoVO.getBirthday());
+        hUserInfo.setHomeAddress(hUserInfoVO.getHomeAddress());
+        hUserInfo.setEntryTime(hUserInfoVO.getEntryTime());
+        hUserInfo.setFounder(SecurityUtils.getLoginUser().getUser().getUserId());
+        hUserInfo.setRemarks(hUserInfoVO.getRemarks());
+
+        if (hUserInfoService.insertHUserInfo(hUserInfo) != 1) {
+            throw new SQLException("新增员工数据异常");
+        }
+
+        return AjaxResult.success("新增员工成功！");
     }
 
     /**
