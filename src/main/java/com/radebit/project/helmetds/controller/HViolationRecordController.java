@@ -1,6 +1,11 @@
 package com.radebit.project.helmetds.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.radebit.project.helmetds.domain.vo.HViolationRecordVO;
+import com.radebit.project.helmetds.service.IHCameraListService;
+import com.radebit.project.helmetds.service.IHUserInfoService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +38,12 @@ public class HViolationRecordController extends BaseController
     @Autowired
     private IHViolationRecordService hViolationRecordService;
 
+    @Autowired
+    private IHCameraListService hCameraListService;
+
+    @Autowired
+    private IHUserInfoService hUserInfoService;
+
     /**
      * 查询安全违规记录列表
      */
@@ -41,7 +52,10 @@ public class HViolationRecordController extends BaseController
     public TableDataInfo list(HViolationRecord hViolationRecord)
     {
         startPage();
-        List<HViolationRecord> list = hViolationRecordService.selectHViolationRecordList(hViolationRecord);
+        List<HViolationRecordVO> list = new ArrayList<>();
+        for (HViolationRecord hViolationRecordTemp:hViolationRecordService.selectHViolationRecordList(hViolationRecord)){
+            list.add(hViolationRecordService.PoToVo(hViolationRecordTemp));
+        }
         return getDataTable(list);
     }
 
@@ -76,11 +90,19 @@ public class HViolationRecordController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody HViolationRecord hViolationRecord)
     {
+        //判断用户是否存在
+        if (hUserInfoService.selectHUserInfoById(hViolationRecord.getUserId())==null){
+            return AjaxResult.error("用户不存在！");
+        }
+        //判断设备是否存
+        if (hCameraListService.selectHCameraListById(hViolationRecord.getCameraId())==null){
+            return AjaxResult.error("摄像头设备不存在！");
+        }
         return toAjax(hViolationRecordService.insertHViolationRecord(hViolationRecord));
     }
 
     /**
-     * 修改安全违规记录
+     * 修改安全违规记录 一般只能修改状态
      */
     @PreAuthorize("@ss.hasPermi('helmetds:violationRecord:edit')")
     @Log(title = "安全违规记录", businessType = BusinessType.UPDATE)

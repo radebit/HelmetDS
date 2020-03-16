@@ -2,6 +2,9 @@ package com.radebit.project.helmetds.service.impl;
 
 import java.util.List;
 import com.radebit.common.utils.DateUtils;
+import com.radebit.project.helmetds.domain.vo.HViolationRecordVO;
+import com.radebit.project.helmetds.service.IHCameraListService;
+import com.radebit.project.helmetds.service.IHUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.radebit.project.helmetds.mapper.HViolationRecordMapper;
@@ -19,6 +22,12 @@ public class HViolationRecordServiceImpl implements IHViolationRecordService
 {
     @Autowired
     private HViolationRecordMapper hViolationRecordMapper;
+
+    @Autowired
+    private IHUserInfoService hUserInfoService;
+
+    @Autowired
+    private IHCameraListService hCameraListService;
 
     /**
      * 查询安全违规记录
@@ -91,5 +100,30 @@ public class HViolationRecordServiceImpl implements IHViolationRecordService
     public int deleteHViolationRecordById(Long violationId)
     {
         return hViolationRecordMapper.deleteHViolationRecordById(violationId);
+    }
+
+    /**
+     * PoToVo
+     *
+     * @param hViolationRecord
+     * @return
+     */
+    @Override
+    public HViolationRecordVO PoToVo(HViolationRecord hViolationRecord) {
+        HViolationRecordVO hViolationRecordVO = new HViolationRecordVO();
+        hViolationRecordVO.setViolationId(hViolationRecord.getViolationId());
+        hViolationRecordVO.setUserId(hViolationRecord.getUserId());
+        hViolationRecordVO.setUserRealName(hUserInfoService.selectHUserInfoById(hViolationRecord.getUserId()).getRealName());
+        hViolationRecordVO.setViolationType(hViolationRecord.getViolationType());
+        hViolationRecordVO.setViolationContent(hViolationRecord.getViolationContent());
+        hViolationRecordVO.setViolationPlace(hViolationRecord.getViolationPlace());
+        hViolationRecordVO.setScreenshots(hViolationRecord.getScreenshots());
+        hViolationRecordVO.setDealState(hViolationRecord.getDealState());
+        hViolationRecordVO.setCameraId(hViolationRecord.getCameraId());
+        hViolationRecordVO.setCameraName(hCameraListService.selectHCameraListById(hViolationRecord.getCameraId()).getCameraName());
+        hViolationRecordVO.setRemarks(hViolationRecord.getRemarks());
+        hViolationRecordVO.setCreateTime(hViolationRecord.getCreateTime());
+        return hViolationRecordVO;
+
     }
 }

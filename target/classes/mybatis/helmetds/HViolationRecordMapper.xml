@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.radebit.project.helmetds.mapper.HViolationRecordMapper">
+    
+    <resultMap type="HViolationRecord" id="HViolationRecordResult">
+        <result property="violationId"    column="violation_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="violationType"    column="violation_type"    />
+        <result property="violationContent"    column="violation_content"    />
+        <result property="violationPlace"    column="violation_place"    />
+        <result property="screenshots"    column="screenshots"    />
+        <result property="dealState"    column="deal_state"    />
+        <result property="cameraId"    column="camera_id"    />
+        <result property="remarks"    column="remarks"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectHViolationRecordVo">
+        select violation_id, user_id, violation_type, violation_content, violation_place, screenshots, deal_state, camera_id, remarks, create_time from h_violation_record
+    </sql>
+
+    <select id="selectHViolationRecordList" parameterType="HViolationRecord" resultMap="HViolationRecordResult">
+        <include refid="selectHViolationRecordVo"/>
+        <where>  
+            <if test="violationId != null "> and violation_id = #{violationId}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="violationType != null  and violationType != ''"> and violation_type = #{violationType}</if>
+            <if test="violationContent != null  and violationContent != ''"> and violation_content like concat('%', #{violationContent}, '%')</if>
+            <if test="violationPlace != null  and violationPlace != ''"> and violation_place = #{violationPlace}</if>
+            <if test="screenshots != null  and screenshots != ''"> and screenshots = #{screenshots}</if>
+            <if test="dealState != null  and dealState != ''"> and deal_state = #{dealState}</if>
+            <if test="cameraId != null "> and camera_id = #{cameraId}</if>
+            <if test="remarks != null  and remarks != ''"> and remarks like concat('%', #{remarks}, '%')</if>
+            <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''"> and create_time between #{params.beginCreateTime} and #{params.endCreateTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectHViolationRecordById" parameterType="Long" resultMap="HViolationRecordResult">
+        <include refid="selectHViolationRecordVo"/>
+        where violation_id = #{violationId}
+    </select>
+        
+    <insert id="insertHViolationRecord" parameterType="HViolationRecord" useGeneratedKeys="true" keyProperty="violationId">
+        insert into h_violation_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null ">user_id,</if>
+            <if test="violationType != null  and violationType != ''">violation_type,</if>
+            <if test="violationContent != null  and violationContent != ''">violation_content,</if>
+            <if test="violationPlace != null  and violationPlace != ''">violation_place,</if>
+            <if test="screenshots != null  and screenshots != ''">screenshots,</if>
+            <if test="dealState != null  and dealState != ''">deal_state,</if>
+            <if test="cameraId != null ">camera_id,</if>
+            <if test="remarks != null  and remarks != ''">remarks,</if>
+            <if test="createTime != null ">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null ">#{userId},</if>
+            <if test="violationType != null  and violationType != ''">#{violationType},</if>
+            <if test="violationContent != null  and violationContent != ''">#{violationContent},</if>
+            <if test="violationPlace != null  and violationPlace != ''">#{violationPlace},</if>
+            <if test="screenshots != null  and screenshots != ''">#{screenshots},</if>
+            <if test="dealState != null  and dealState != ''">#{dealState},</if>
+            <if test="cameraId != null ">#{cameraId},</if>
+            <if test="remarks != null  and remarks != ''">#{remarks},</if>
+            <if test="createTime != null ">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHViolationRecord" parameterType="HViolationRecord">
+        update h_violation_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null ">user_id = #{userId},</if>
+            <if test="violationType != null  and violationType != ''">violation_type = #{violationType},</if>
+            <if test="violationContent != null  and violationContent != ''">violation_content = #{violationContent},</if>
+            <if test="violationPlace != null  and violationPlace != ''">violation_place = #{violationPlace},</if>
+            <if test="screenshots != null  and screenshots != ''">screenshots = #{screenshots},</if>
+            <if test="dealState != null  and dealState != ''">deal_state = #{dealState},</if>
+            <if test="cameraId != null ">camera_id = #{cameraId},</if>
+            <if test="remarks != null  and remarks != ''">remarks = #{remarks},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+        </trim>
+        where violation_id = #{violationId}
+    </update>
+
+    <delete id="deleteHViolationRecordById" parameterType="Long">
+        delete from h_violation_record where violation_id = #{violationId}
+    </delete>
+
+    <delete id="deleteHViolationRecordByIds" parameterType="String">
+        delete from h_violation_record where violation_id in 
+        <foreach item="violationId" collection="array" open="(" separator="," close=")">
+            #{violationId}
+        </foreach>
+    </delete>
+    
+</mapper>
