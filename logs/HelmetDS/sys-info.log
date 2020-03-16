@@ -167,3 +167,5 @@
 18:37:17.267 [http-nio-7005-exec-1] INFO  i.l.c.EpollProvider - [<clinit>,68] - Starting without optional epoll library
 18:37:17.268 [http-nio-7005-exec-1] INFO  i.l.c.KqueueProvider - [<clinit>,70] - Starting without optional kqueue library
 18:37:17.750 [http-nio-7005-exec-1] INFO  c.a.d.p.DruidDataSource - [init,991] - {dataSource-1} inited
+20:41:56.433 [schedule-pool-2] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[admin][Success][登录成功]
+20:46:54.675 [schedule-pool-7] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[sysAdmin][Success][登录成功]
