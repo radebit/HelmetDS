@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.hutool.core.lang.Assert;
+import com.github.pagehelper.PageInfo;
 import com.radebit.common.utils.SecurityUtils;
 import com.radebit.project.helmetds.domain.vo.HUserInfoVO;
 import com.radebit.project.system.domain.SysUser;
@@ -51,11 +52,15 @@ public class HUserInfoController extends BaseController {
     @GetMapping("/list")
     public TableDataInfo list(HUserInfo hUserInfo) {
         startPage();
+        List<HUserInfo> hUserInfos = hUserInfoService.selectHUserInfoList(hUserInfo);
+        PageInfo pageResult = new PageInfo(hUserInfos);
         List<HUserInfoVO> list = new ArrayList<>();
-        for (HUserInfo hUserInfoTemp : hUserInfoService.selectHUserInfoList(hUserInfo)) {
+        for (HUserInfo hUserInfoTemp : hUserInfos) {
             list.add(hUserInfoService.PoToVo(hUserInfoTemp));
         }
-        return getDataTable(list);
+        TableDataInfo dataTable = getDataTable(list);
+        dataTable.setTotal(pageResult.getTotal());
+        return dataTable;
     }
 
     /**

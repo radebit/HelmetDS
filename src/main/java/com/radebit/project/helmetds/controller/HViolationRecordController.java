@@ -3,6 +3,7 @@ package com.radebit.project.helmetds.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
 import com.radebit.project.helmetds.domain.vo.HViolationRecordVO;
 import com.radebit.project.helmetds.service.IHCameraListService;
 import com.radebit.project.helmetds.service.IHUserInfoService;
@@ -52,11 +53,15 @@ public class HViolationRecordController extends BaseController
     public TableDataInfo list(HViolationRecord hViolationRecord)
     {
         startPage();
+        List<HViolationRecord> hViolationRecords = hViolationRecordService.selectHViolationRecordList(hViolationRecord);
+        PageInfo pageResult = new PageInfo(hViolationRecords);
         List<HViolationRecordVO> list = new ArrayList<>();
-        for (HViolationRecord hViolationRecordTemp:hViolationRecordService.selectHViolationRecordList(hViolationRecord)){
+        for (HViolationRecord hViolationRecordTemp:hViolationRecords){
             list.add(hViolationRecordService.PoToVo(hViolationRecordTemp));
         }
-        return getDataTable(list);
+        TableDataInfo dataTable = getDataTable(list);
+        dataTable.setTotal(pageResult.getTotal());
+        return dataTable;
     }
 
     /**

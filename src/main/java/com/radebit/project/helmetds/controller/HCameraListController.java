@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.hutool.core.lang.Assert;
+import com.github.pagehelper.PageInfo;
 import com.radebit.common.utils.SecurityUtils;
 import com.radebit.project.helmetds.domain.vo.HCameraListVO;
 import com.radebit.project.helmetds.service.IHCameraGroupService;
@@ -50,11 +51,15 @@ public class HCameraListController extends BaseController
     public TableDataInfo list(HCameraList hCameraList)
     {
         startPage();
+        List<HCameraList> hCameraLists = hCameraListService.selectHCameraListList(hCameraList);
+        PageInfo pageResult = new PageInfo(hCameraLists);
         List<HCameraListVO> list = new ArrayList<>();
         for (HCameraList hCameraListTemp: hCameraListService.selectHCameraListList(hCameraList)){
             list.add(hCameraListService.PoToVo(hCameraListTemp));
         }
-        return getDataTable(list);
+        TableDataInfo dataTable = getDataTable(list);
+        dataTable.setTotal(pageResult.getTotal());
+        return dataTable;
     }
 
     /**
