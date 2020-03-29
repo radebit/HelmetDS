@@ -54,7 +54,8 @@ public class HCameraListController extends BaseController
         List<HCameraList> hCameraLists = hCameraListService.selectHCameraListList(hCameraList);
         PageInfo pageResult = new PageInfo(hCameraLists);
         List<HCameraListVO> list = new ArrayList<>();
-        for (HCameraList hCameraListTemp: hCameraListService.selectHCameraListList(hCameraList)){
+
+        for (HCameraList hCameraListTemp:hCameraLists){
             list.add(hCameraListService.PoToVo(hCameraListTemp));
         }
         TableDataInfo dataTable = getDataTable(list);
