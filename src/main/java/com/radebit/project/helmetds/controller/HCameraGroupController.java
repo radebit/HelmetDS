@@ -101,8 +101,8 @@ public class HCameraGroupController extends BaseController {
         for (Long groupId : groupIds) {
             HCameraList hCameraList = new HCameraList();
             hCameraList.setGroupId(groupId);
-            if (hCameraListService.selectHCameraListList(hCameraList) != null) {
-                return AjaxResult.error("分组：" + hCameraGroupService.selectHCameraGroupById(groupId).getGroupName() + " 下,还存在设备，无法删除！");
+            if (hCameraListService.selectHCameraListList(hCameraList).size()>0) {
+                return AjaxResult.error("分组：" + hCameraGroupService.selectHCameraGroupById(groupId).getGroupName() + "下,还存在设备，无法删除！");
             }
         }
         return toAjax(hCameraGroupService.deleteHCameraGroupByIds(groupIds));
