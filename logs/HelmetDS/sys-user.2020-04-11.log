@@ -1,0 +1,2 @@
+18:41:17.695 [schedule-pool-1] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[sysAdmin][Success][登录成功]
+18:43:58.734 [Thread-17] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====

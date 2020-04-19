@@ -1,12 +1,19 @@
 package com.radebit.project.helmetds.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.ZipUtil;
 import com.github.pagehelper.PageInfo;
 import com.radebit.common.utils.SecurityUtils;
+import com.radebit.common.utils.file.FileUtils;
+import com.radebit.framework.config.HelmetDSConfig;
 import com.radebit.project.helmetds.domain.vo.HUserInfoVO;
 import com.radebit.project.system.domain.SysUser;
 import com.radebit.project.system.service.ISysUserService;
@@ -30,6 +37,9 @@ import com.radebit.framework.web.domain.AjaxResult;
 import com.radebit.common.utils.poi.ExcelUtil;
 import com.radebit.framework.web.page.TableDataInfo;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * 员工信息Controller
  *
@@ -44,6 +54,11 @@ public class HUserInfoController extends BaseController {
 
     @Autowired
     private ISysUserService sysUserService;
+
+    /**
+     * 默认上传的地址
+     */
+    private static String defaultBaseDir = HelmetDSConfig.getProfile();
 
     /**
      * 查询员工信息列表
@@ -190,5 +205,37 @@ public class HUserInfoController extends BaseController {
     @DeleteMapping("/{userIds}")
     public AjaxResult remove(@PathVariable Long[] userIds) {
         return toAjax(hUserInfoService.deleteHUserInfoByIds(userIds));
+    }
+
+    /**
+     * 导出员工图片信息
+     */
+    @GetMapping(value = "/getWorkerPic")
+    @Transactional
+    public void getWorkerPic(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        String fileUUID = IdUtil.simpleUUID();
+        //获取全部用户信息
+        List<HUserInfo> allHUserInfo = hUserInfoService.selectHUserInfoList(new HUserInfo());
+        //创建根目录
+        String genDir = defaultBaseDir + "/zip/" + IdUtil.simpleUUID();
+        FileUtil.mkdir(genDir);
+        for (HUserInfo hUserInfo : allHUserInfo) {
+            //创建用户目录
+            String userDir = genDir + "/" + hUserInfo.getUserId();
+            FileUtil.mkdir(userDir);
+            //放入人像图片
+            FileUtil.copy(defaultBaseDir + hUserInfo.getPicFace().substring(8), userDir, true);
+            //放入安全帽图片
+            FileUtil.copy(defaultBaseDir + hUserInfo.getPicHelmet().substring(8), userDir, true);
+        }
+        //打包根目录
+        String zipFile =  IdUtil.simpleUUID() + ".zip";
+        String zipDir = defaultBaseDir + "/zip/" + zipFile;
+        ZipUtil.zip(genDir, zipDir);
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("multipart/form-data");
+        response.setHeader("Content-Disposition",
+                "attachment;fileName=" + FileUtils.setFileDownloadHeader(request, zipFile));
+        FileUtils.writeBytes(zipDir, response.getOutputStream());
     }
 }

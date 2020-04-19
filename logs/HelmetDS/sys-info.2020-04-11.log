@@ -1,0 +1,21 @@
+18:40:39.748 [restartedMain] INFO  c.r.HelmetDSApplication - [logStarting,50] - Starting HelmetDSApplication on RadedeMBP with PID 2084 (/Users/rade/Documents/Java/HelmetDS/HelmetDS/target/classes started by rade in /Users/rade/Documents/Java/HelmetDS/HelmetDS)
+18:40:39.754 [restartedMain] INFO  c.r.HelmetDSApplication - [logStartupProfileInfo,679] - The following profiles are active: druid
+18:40:41.822 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-7005"]
+18:40:41.830 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+18:40:41.830 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet Engine: Apache Tomcat/9.0.13
+18:40:41.835 [restartedMain] INFO  o.a.c.c.AprLifecycleListener - [log,173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/rade/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+18:40:41.901 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+18:40:43.980 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - [initHandlerMethods,69] - Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+18:40:44.873 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - [start,160] - Context refreshed
+18:40:44.885 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper - [start,163] - Found 1 custom documentation plugin(s)
+18:40:44.924 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner - [scan,41] - Scanning for api listing references
+18:40:45.037 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-7005"]
+18:40:45.055 [restartedMain] INFO  o.a.t.u.n.NioSelectorPool - [log,173] - Using a shared selector for servlet write/read
+18:40:45.070 [restartedMain] INFO  c.r.HelmetDSApplication - [logStarted,59] - Started HelmetDSApplication in 5.689 seconds (JVM running for 6.616)
+18:41:13.604 [http-nio-7005-exec-2] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+18:41:14.166 [http-nio-7005-exec-2] INFO  i.l.c.EpollProvider - [<clinit>,68] - Starting without optional epoll library
+18:41:14.168 [http-nio-7005-exec-2] INFO  i.l.c.KqueueProvider - [<clinit>,70] - Starting without optional kqueue library
+18:41:17.390 [http-nio-7005-exec-3] INFO  c.a.d.p.DruidDataSource - [init,991] - {dataSource-1} inited
+18:41:17.695 [schedule-pool-1] INFO  sys-user - [run,54] - [127.0.0.1]内网IP[sysAdmin][Success][登录成功]
+18:43:58.734 [Thread-17] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+18:43:58.747 [Thread-17] INFO  c.a.d.p.DruidDataSource - [close,1928] - {dataSource-1} closed
