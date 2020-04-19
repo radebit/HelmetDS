@@ -211,7 +211,6 @@ public class HUserInfoController extends BaseController {
         String profileDir = HelmetDSConfig.getProfile();
         //获取全部用户信息
         List<HUserInfo> allHUserInfo = hUserInfoService.selectHUserInfoList(new HUserInfo());
-        System.out.println("defaultBaseDir:"+profileDir);
         //创建根目录
         String genDir = profileDir + "/zip/" + IdUtil.simpleUUID();
         FileUtil.mkdir(genDir);
@@ -219,12 +218,15 @@ public class HUserInfoController extends BaseController {
             //创建用户目录
             String userDir = genDir + "/" + hUserInfo.getUserId();
             FileUtil.mkdir(userDir);
-            System.out.println("userDir:"+userDir);
-            System.out.println(profileDir + hUserInfo.getPicFace().substring(8));
-            //放入人像图片
-            FileUtil.copy(profileDir + hUserInfo.getPicFace().substring(8), userDir, true);
-            //放入安全帽图片
-            FileUtil.copy(profileDir + hUserInfo.getPicHelmet().substring(8), userDir, true);
+            //判断为空
+            if (hUserInfo.getPicHelmet()!=null){
+                //放入安全帽图片
+                FileUtil.copy(profileDir + hUserInfo.getPicHelmet().substring(8), userDir, true);
+            }
+            if (hUserInfo.getPicFace()!=null){
+                //放入人像图片
+                FileUtil.copy(profileDir + hUserInfo.getPicFace().substring(8), userDir, true);
+            }
         }
         //打包根目录
         String zipFile =  IdUtil.simpleUUID() + ".zip";
