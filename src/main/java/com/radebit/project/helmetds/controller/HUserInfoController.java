@@ -56,11 +56,6 @@ public class HUserInfoController extends BaseController {
     private ISysUserService sysUserService;
 
     /**
-     * 默认上传的地址
-     */
-    private static String defaultBaseDir = HelmetDSConfig.getProfile();
-
-    /**
      * 查询员工信息列表
      */
     @PreAuthorize("@ss.hasPermi('helmetds:userInfo:list')")
@@ -213,24 +208,27 @@ public class HUserInfoController extends BaseController {
     @GetMapping(value = "/getWorkerPic")
     @Transactional
     public void getWorkerPic(HttpServletResponse response, HttpServletRequest request) throws IOException {
-        String fileUUID = IdUtil.simpleUUID();
+        String profileDir = HelmetDSConfig.getProfile();
         //获取全部用户信息
         List<HUserInfo> allHUserInfo = hUserInfoService.selectHUserInfoList(new HUserInfo());
+        System.out.println("defaultBaseDir:"+profileDir);
         //创建根目录
-        String genDir = defaultBaseDir + "/zip/" + IdUtil.simpleUUID();
+        String genDir = profileDir + "/zip/" + IdUtil.simpleUUID();
         FileUtil.mkdir(genDir);
         for (HUserInfo hUserInfo : allHUserInfo) {
             //创建用户目录
             String userDir = genDir + "/" + hUserInfo.getUserId();
             FileUtil.mkdir(userDir);
+            System.out.println("userDir:"+userDir);
+            System.out.println(profileDir + hUserInfo.getPicFace().substring(8));
             //放入人像图片
-            FileUtil.copy(defaultBaseDir + hUserInfo.getPicFace().substring(8), userDir, true);
+            FileUtil.copy(profileDir + hUserInfo.getPicFace().substring(8), userDir, true);
             //放入安全帽图片
-            FileUtil.copy(defaultBaseDir + hUserInfo.getPicHelmet().substring(8), userDir, true);
+            FileUtil.copy(profileDir + hUserInfo.getPicHelmet().substring(8), userDir, true);
         }
         //打包根目录
         String zipFile =  IdUtil.simpleUUID() + ".zip";
-        String zipDir = defaultBaseDir + "/zip/" + zipFile;
+        String zipDir = profileDir + "/zip/" + zipFile;
         ZipUtil.zip(genDir, zipDir);
         response.setCharacterEncoding("utf-8");
         response.setContentType("multipart/form-data");

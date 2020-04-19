@@ -9,7 +9,7 @@ helmetds:
   # 实例演示开关
   demoEnabled: true
   # 文件路径
-  profile: ${user.dir}/profile/HelmetDS
+  profile: /Users/rade/Documents/dev-temp/HelmetDS
   # 获取ip地址开关
   addressEnabled: true
 
