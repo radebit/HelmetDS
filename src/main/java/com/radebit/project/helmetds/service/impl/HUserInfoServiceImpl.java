@@ -117,6 +117,7 @@ public class HUserInfoServiceImpl implements IHUserInfoService
         hUserInfoVO.setEmail(sysUser.getEmail());
         hUserInfoVO.setPhonenumber(sysUser.getPhonenumber());
         hUserInfoVO.setSex(sysUser.getSex());
+        hUserInfoVO.setAvatar(sysUser.getAvatar());
         hUserInfoVO.setLoginDate(sysUser.getLoginDate());
         hUserInfoVO.setRealName(hUserInfo.getRealName());
         hUserInfoVO.setIdNumber(hUserInfo.getIdNumber());

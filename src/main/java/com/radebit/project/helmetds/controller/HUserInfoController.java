@@ -117,6 +117,7 @@ public class HUserInfoController extends BaseController {
         sysUser.setDeptId(103L);
         sysUser.setUserName(hUserInfoVO.getUserName());
         sysUser.setNickName("匿名");
+        sysUser.setAvatar(hUserInfoVO.getAvatar());
         sysUser.setEmail(hUserInfoVO.getEmail());
         sysUser.setPhonenumber(hUserInfoVO.getPhonenumber());
         sysUser.setSex(hUserInfoVO.getSex() == null ? "2" : hUserInfoVO.getSex());
@@ -166,6 +167,7 @@ public class HUserInfoController extends BaseController {
         SysUser sysUser = new SysUser();
         sysUser.setUserId(hUserInfoVO.getUserId());
         sysUser.setEmail(hUserInfoVO.getEmail());
+        sysUser.setAvatar(hUserInfoVO.getAvatar());
         sysUser.setPhonenumber(hUserInfoVO.getPhonenumber());
         sysUser.setSex(hUserInfoVO.getSex());
         sysUser.setStatus(hUserInfoVO.getStatus());

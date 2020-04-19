@@ -45,6 +45,11 @@ public class HUserInfoVO {
     private String sex;
 
     /**
+     * 头像
+     */
+    private String avatar;
+
+    /**
      * 最后登陆时间
      */
     private Date loginDate;
@@ -254,5 +259,13 @@ public class HUserInfoVO {
 
     public void setLoginIp(String loginIp) {
         this.loginIp = loginIp;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
