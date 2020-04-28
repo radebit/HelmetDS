@@ -146,7 +146,7 @@ public class HUserInfoController extends BaseController {
             throw new SQLException("新增员工数据异常");
         }
 
-        return AjaxResult.success("新增员工成功！");
+        return AjaxResult.success("新增员工成功！",hUserInfoVO);
     }
 
     /**
